@@ -354,6 +354,11 @@ public class WheelView extends View {
         }
     }
 
+
+    private Typeface getTypefaceObj(String typeFaceName) {
+        return Typeface.createFromAsset(context.getAssets(), "fonts/" + typeFaceName);
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         if (adapter == null) {
@@ -469,6 +474,11 @@ public class WheelView extends View {
                     contentText = getContentText(visibles[counter]);
                 }
 
+                if (contentText.contains(".ttf") || contentText.contains(".TTF")) {
+                    paintCenterText.setTypeface(getTypefaceObj(contentText));
+                    paintOuterText.setTypeface(getTypefaceObj(contentText));
+                    contentText = contentText.replace(".ttf", "").replace(".TTF", "");
+                }
                 reMeasureTextSize(contentText);
                 //计算开始绘制的位置
                 measuredCenterContentStart(contentText);

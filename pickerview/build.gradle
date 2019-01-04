@@ -1,16 +1,18 @@
 apply plugin: 'com.android.library'
+
+//启用Jitpack 插件
 apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.novoda.bintray-release'//添加JCenter插件
 
-
-
+//设置Jitpack发布的Group
+group = 'com.github.uncle2000'
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion COMPILE_SDK_VERSION as int
+
+
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 26
+        minSdkVersion MIN_COMPILE_SDK_VERSION as int
+        targetSdkVersion COMPILE_SDK_VERSION as int
         versionCode 31
         versionName "4.1.6"
     }
@@ -34,16 +36,8 @@ allprojects {
         }
     }
 }
-publish {
-    userOrg = 'contrarywind'//bintray.com 用户名/组织名 user/org name
-    groupId = 'com.contrarywind'//JCenter上显示的路径 path
-    artifactId = 'Android-PickerView'//项目名称 project name
-    publishVersion = '4.1.6'//版本号 version code
-    desc = 'this is a pickerview for android'//项目描述 description
-    website = 'https://github.com/Bigkoo/Android-PickerView' //项目网址链接 link
-}
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(path: ':wheelview')
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api project(path: ':wheelview')
 }
